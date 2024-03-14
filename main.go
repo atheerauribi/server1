@@ -42,4 +42,12 @@ func main() {
 		log.Fatalf("Add failed: %v", err)
 	}
 	fmt.Printf("Add: %v + %v = %v\n", req.Number1, req.Number2, resp.Result)
+
+	//Call the Divide method
+	req2 := &pb.DivideRequest{Number1: 8423.8, Number2: 20.02377}
+	resp2, err2 := client.Divide(context.Background(), req2)
+	if err2 != nil {
+		log.Fatalf("Divide failed: %v", err2)
+	}
+	fmt.Printf("Divide: %v / %v = %.2f\n", req2.Number1, req2.Number2, resp2.Result)
 }

@@ -42,6 +42,19 @@ func (s *userFacingServer) Add(ctx context.Context, req *pb.AddRequest) (*pb.Ope
 	return resp, nil
 }
 
+// Client calls proxyDivide, proxyDivide() packages Divide request for calculator server, and returns the result
+func (s *userFacingServer) Divide(ctx context.Context, req *pb.DivideRequest) (*pb.OperationResponse, error) {
+	// Call proxy server
+	s.connectToProxyServer()
+	outgoingReq := &pb.DivideRequest{Number1: req.Number1, Number2: req.Number2}
+	resp, err := s.proxyClient.Divide(ctx, outgoingReq)
+	if err != nil {
+		log.Fatalf("Server 1 could not call divide in proxy: %v", err)
+	}
+
+	return resp, nil
+}
+
 // RunServer runs the gRPC server
 func RunServer() error {
 	fmt.Println("Running Server\nListening on port 8888...")
