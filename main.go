@@ -36,9 +36,10 @@ func main() {
 	client := pb.NewCalculatorClient(conn)
 
 	// Call the Add method
-	resp, err := client.Add(context.Background(), &pb.AddRequest{Number1: 7, Number2: 3})
+	req := &pb.AddRequest{Number1: 21, Number2: 48}
+	resp, err := client.Add(context.Background(), req)
 	if err != nil {
 		log.Fatalf("Add failed: %v", err)
 	}
-	fmt.Printf("Add: 7 + 3 = %v\n", resp.Result)
+	fmt.Printf("Add: %v + %v = %v\n", req.Number1, req.Number2, resp.Result)
 }
