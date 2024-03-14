@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = "..";
+
+// The calculator service definition.
+service Calculator {
+  // Adds two numbers and returns the result.
+  rpc Add(AddRequest) returns (OperationResponse) {}
+  
+  // Subtracts two numbers and returns the result.
+  rpc Subtract(SubtractRequest) returns (OperationResponse) {}
+  
+  // Multiplies two numbers and returns the result.
+  rpc Multiply(MultiplyRequest) returns (OperationResponse) {}
+  
+  // Divides two numbers and returns the result.
+  rpc Divide(DivideRequest) returns (OperationResponse) {}
+}
+
+// Request format for adding two numbers.
+message AddRequest {
+  double number1 = 1;
+  double number2 = 2;
+}
+
+// Request format for subtracting two numbers.
+message SubtractRequest {
+  double number1 = 1;
+  double number2 = 2;
+}
+
+// Request format for multiplying two numbers.
+message MultiplyRequest {
+  double number1 = 1;
+  double number2 = 2;
+}
+
+// Request format for dividing two numbers.
+message DivideRequest {
+  double number1 = 1;
+  double number2 = 2;
+}
+
+// Response format for operations.
+message OperationResponse {
+  double result = 1;
+}
